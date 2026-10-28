@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="quest"/>
+        <attribute name="authors" value="enkhjinamartuvshin"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-28 09:09:07 AM"/>
+        <attribute name="created" value="ZW5raGppbmFtYXJ0dXZzaGluO0VOS0hKSU5TLU1BQ0JPTzsyMDI2LTEwLTI3OzAzOjQ2OjI2IFBNOzQzMTA="/>
+        <attribute name="edited" value="ZW5raGppbmFtYXJ0dXZzaGluO0VOS0hKSU5TLU1BQ0JPTzsyMDI2LTEwLTI4OzA5OjA5OjA3IEFNOzIzOzQ0NjA="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="score" type="Integer" array="False" size=""/>
+            <declare name="credit" type="Integer" array="False" size=""/>
+            <declare name="max1" type="Integer" array="False" size=""/>
+            <declare name="max2" type="Integer" array="False" size=""/>
+            <declare name="max3" type="Integer" array="False" size=""/>
+            <declare name="totalPoints" type="Real" array="False" size=""/>
+            <declare name="totalCredit" type="Real" array="False" size=""/>
+            <declare name="gpa" type="Real" array="False" size=""/>
+            <declare name="point" type="Real" array="False" size=""/>
+            <output expression="&quot;&#1061;&#1080;&#1095;&#1101;&#1101;&#1083;&#1080;&#1081;&#1085; &#1090;&#1086;&#1086; (5-10):&quot;" newline="True"/>
+            <do expression="n &lt; 5 Or n &gt; 10">
+                <input variable="n"/>
+            </do>
+            <assign variable="totalCredit" expression="0"/>
+            <assign variable="totalPoints" expression="0"/>
+            <assign variable="max1" expression="-1"/>
+            <assign variable="max2" expression="-1"/>
+            <assign variable="max3" expression="-1"/>
+            <for variable="i" start="1" end="n" direction="inc" step="1">
+                <do expression="score &lt; 0 Or score &gt; 100">
+                    <output expression="&quot;&#1054;&#1085;&#1086;&#1086; (0-100):&quot;" newline="True"/>
+                    <input variable="score"/>
+                </do>
+                <do expression="credit &lt; 1 or credit &gt; 5">
+                    <output expression="&quot;&#1050;&#1088;&#1077;&#1076;&#1080;&#1090; (1-5):&quot;" newline="True"/>
+                    <input variable="credit"/>
+                </do>
+                <assign variable="point" expression="ToPoint(score)"/>
+                <output expression="&quot;&#1061;&#1080;&#1095;&#1101;&#1101;&#1083; &quot; &amp; i &amp; &quot;: &#1086;&#1085;&#1086;&#1086;=&quot; &amp; score &amp; &quot;, &#1082;&#1088;&#1077;&#1076;&#1080;&#1090;=&quot; &amp; credit &amp; &quot;, &#1075;&#1086;&#1083;&#1095;&#1080;&#1081;&#1085; &#1086;&#1085;&#1086;&#1086;=&quot; &amp; point" newline="True"/>
+                <assign variable="totalPoints" expression="totalpoints + point * credit"/>
+                <assign variable="totalCredit" expression="totalCredit + credit"/>
+                <if expression="score &gt; max1">
+                    <then>
+                        <assign variable="max3" expression="max2"/>
+                        <assign variable="max2" expression="max1"/>
+                        <assign variable="max1" expression="score"/>
+                    </then>
+                    <else>
+                        <if expression="score &gt; max2">
+                            <then>
+                                <assign variable="max3" expression="max2"/>
+                                <assign variable="max2" expression="score"/>
+                            </then>
+                            <else>
+                                <if expression="score &gt; max3">
+                                    <then>
+                                        <assign variable="max3" expression="score"/>
+                                    </then>
+                                    <else/>
+                                </if>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </for>
+            <assign variable="gpa" expression="totalpoints / totalcredit"/>
+            <output expression="&quot;&#1043;&#1086;&#1083;&#1095;:&quot; &amp; gpa" newline="True"/>
+            <output expression="&quot;&#1064;&#1080;&#1083;&#1076;&#1101;&#1075; 3: &quot; &amp; max1 &amp; &quot;, &quot; &amp; max2 &amp; &quot;, &quot; &amp; max3" newline="True"/>
+        </body>
+    </function>
+    <function name="ToPoint" type="Real" variable="p">
+        <parameters>
+            <parameter name="score" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="p" type="Real" array="False" size=""/>
+            <if expression="score &gt;=94">
+                <then>
+                    <assign variable="p" expression="4.0"/>
+                </then>
+                <else>
+                    <if expression="score &gt;=90">
+                        <then>
+                            <assign variable="p" expression="3.7"/>
+                        </then>
+                        <else>
+                            <if expression="score &gt;=87">
+                                <then>
+                                    <assign variable="p" expression="3.3"/>
+                                </then>
+                                <else>
+                                    <if expression="score &gt;=83">
+                                        <then>
+                                            <assign variable="p" expression="3.0"/>
+                                        </then>
+                                        <else>
+                                            <if expression="score &gt;=80">
+                                                <then>
+                                                    <assign variable="p" expression="2.7"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="score &gt;=77">
+                                                        <then>
+                                                            <assign variable="p" expression="2.3"/>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="score &gt;=73">
+                                                                <then>
+                                                                    <assign variable="p" expression="2.0"/>
+                                                                </then>
+                                                                <else>
+                                                                    <if expression="score &gt;=70">
+                                                                        <then>
+                                                                            <assign variable="p" expression="1.7"/>
+                                                                        </then>
+                                                                        <else>
+                                                                            <if expression="score &gt;=67">
+                                                                                <then>
+                                                                                    <assign variable="p" expression="1.3"/>
+                                                                                </then>
+                                                                                <else>
+                                                                                    <if expression="score &gt;=63">
+                                                                                        <then>
+                                                                                            <assign variable="p" expression="1.0"/>
+                                                                                        </then>
+                                                                                        <else>
+                                                                                            <if expression="score &gt;=60">
+                                                                                                <then>
+                                                                                                    <assign variable="p" expression="0.7"/>
+                                                                                                </then>
+                                                                                                <else>
+                                                                                                    <assign variable="p" expression="0.0"/>
+                                                                                                </else>
+                                                                                            </if>
+                                                                                        </else>
+                                                                                    </if>
+                                                                                </else>
+                                                                            </if>
+                                                                        </else>
+                                                                    </if>
+                                                                </else>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
