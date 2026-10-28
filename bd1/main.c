@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-/* Дэд алгоритм: онооноос голч (point) тооцох функц
-   (Flowgorithm дээрх Call блок) */
+
 double scoreToPoint(int score)
 {
     if (score >= 94)
@@ -32,53 +31,47 @@ double scoreToPoint(int score)
 
 int main(void)
 {
-    /* Integer хувьсагчид */
+   
     int n, i, score, credit;
     int max1, max2, max3;
 
-    /* Real хувьсагчид */
+    
     double totalCredits, totalPoints, gpa, point;
 
-    /* Оролтын шалгалт: хичээлийн тоо буруу бол дахин асууна (do-while) */
+    
     do
     {
         printf("Хичээлийн тоо (5-10): ");
         scanf("%d", &n);
     } while (n < 5 || n > 10);
 
-    /* Анхны утга олгох */
+   
     totalCredits = 0;
     totalPoints  = 0;
     max1 = -1;
     max2 = -1;
     max3 = -1;
-
-    /* Давталт: i = 1-ээс n хүртэл */
+   
     for (i = 1; i <= n; i++)
     {
-        /* Оноо оруулах + шалгах */
         do
         {
             printf("%d-р хичээлийн оноо (0-100): ", i);
             scanf("%d", &score);
         } while (score < 0 || score > 100);
 
-        /* Кредит оруулах + шалгах */
         do
         {
             printf("%d-р хичээлийн кредит (1-6): ", i);
             scanf("%d", &credit);
         } while (credit < 1 || credit > 6);
 
-        /* Дэд алгоритмыг дуудаж голч авах */
         point = scoreToPoint(score);
         printf("Хичээл %d: оноо = %d, голч = %.1f\n", i, score, point);
 
-        /* Нийлбэр хуримтлуулах */
         totalPoints  = totalPoints + point * credit;
         totalCredits = totalCredits + credit;
 
-        /* Хамгийн өндөр 3 оноог хайх */
         if (score > max1)
         {
             max3 = max2;
@@ -96,7 +89,6 @@ int main(void)
         }
     }
 
-    /* Нийт дундаж голч (GPA) */
     gpa = totalPoints / totalCredits;
 
     printf("\nНийт кредит: %6.1f\n", totalCredits);
